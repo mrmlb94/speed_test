@@ -30,9 +30,4 @@ def test_speed():
     return jsonify(result)
 
 if __name__ == "__main__":
-    app.run(debug=True)
-
-    
-print("Starting the application")
-while True:
-    pass  # Keep the container running
+    app.run(host="0.0.0.0", port=80)
