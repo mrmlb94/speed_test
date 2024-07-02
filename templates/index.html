@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Speed Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .result { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>MRMLB Internet Speed Test</h1>
+    <button onclick="testSpeed()">Test Speed</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        function testSpeed() {
+            document.getElementById('result').innerHTML = 'Testing... Please wait.';
+            fetch('/test_speed')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerHTML = `
+                        <p><strong>Download Speed:</strong> ${data.download_speed}</p>
+                        <p><strong>Upload Speed:</strong> ${data.upload_speed}</p>
+                        <p><strong>Ping:</strong> ${data.ping}</p>
+                        <p><strong>Timestamp:</strong> ${data.timestamp}</p>
+                    `;
+                })
+                .catch(error => {
+                    document.getElementById('result').innerHTML = 'Error: ' + error;
+                });
+        }
+    </script>
+</body>
+</html>
