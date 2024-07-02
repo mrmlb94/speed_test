@@ -1,2 +1,5 @@
 flask
 requests
+Flask==2.1.2
+gunicorn==22.0.0
+speedtest-cli==2.1.3
